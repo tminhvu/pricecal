@@ -13,7 +13,7 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
         super(ItemListStateInitial()) {
     on<ItemListEventLoad>(_onLoad);
     on<ItemListEventAddItem>(_onAddItem);
-    on<ItemListEventClearAllItem>(_clearAllItem);
+    on<ItemListEventClearAllItem>(_onClearAllItem);
     on<ItemListEventRemoveItem>(_onRemoveItem);
   }
 
@@ -42,6 +42,7 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
       emit(
         ItemListStateLoadSuccess(itemList: list),
       );
+      _itemListRepository.saveItemList(list);
       return;
     }
 
@@ -50,16 +51,13 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
         itemList: list..insert(0, event.item),
       ),
     );
-
     _itemListRepository.saveItemList(list);
   }
 
-  FutureOr<void> _clearAllItem(
+  FutureOr<void> _onClearAllItem(
     ItemListEventClearAllItem event,
     Emitter<ItemListState> emit,
   ) {
-    emit(ItemListStateLoadInProcess());
-
     emit(ItemListStateLoadSuccess(itemList: []));
 
     _itemListRepository.clearItemList(save: event.save);
@@ -67,9 +65,6 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
 
   FutureOr<void> _onRemoveItem(ItemListEventRemoveItem event, Emitter<ItemListState> emit) {
     List<Item> list = [...state.itemList];
-
-    emit(ItemListStateLoadInProcess());
-
     emit(ItemListStateLoadSuccess(itemList: list..remove(event.item)));
 
     _itemListRepository.saveItemList(list);

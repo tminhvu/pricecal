@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:currency_formatter/currency_formatter.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -172,12 +171,3 @@ const Widget verticalSpaceLarge = SizedBox(height: kLargeSize);
 const Widget verticalSpaceMassive = SizedBox(height: kMassiveSize);
 
 const kColorPink = Color.fromARGB(255, 234, 203, 214);
-
-const vnd = CurrencyFormat(
-  symbol: '₫',
-  code: 'vnd',
-  symbolSide: SymbolSide.right,
-  symbolSeparator: ' ',
-  decimalSeparator: ',',
-  thousandSeparator: '.',
-);

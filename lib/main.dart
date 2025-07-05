@@ -73,7 +73,6 @@ class App extends StatelessWidget {
           ).copyWith(
             pageTransitionsTheme: const PageTransitionsTheme(builders: {
               TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
             }),
           ),
         );

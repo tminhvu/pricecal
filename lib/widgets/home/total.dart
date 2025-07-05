@@ -10,14 +10,9 @@ import 'package:pricecal/my_navigator.dart';
 import 'package:pricecal/ui_helpers.dart';
 import 'package:pricecal/widgets/my_confirmation_dialog.dart';
 
-class Total extends StatefulWidget {
+class Total extends StatelessWidget {
   const Total({super.key});
 
-  @override
-  State<Total> createState() => _TotalState();
-}
-
-class _TotalState extends State<Total> {
   @override
   Widget build(BuildContext context) {
     return NeuContainer(
@@ -94,7 +89,10 @@ class _TotalState extends State<Total> {
         }
 
         if (state is ItemListStateLoadFailed) {
-          return Text(context.localeString('failed_to_load'));
+          return Text(
+            context.localeString('failed_to_load'),
+            style: MyPixelFontStyle.h3(context),
+          );
         }
 
         if (state is ItemListStateLoadSuccess) {

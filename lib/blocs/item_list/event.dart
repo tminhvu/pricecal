@@ -1,6 +1,6 @@
 import 'package:pricecal/data/models/item.dart';
 
-sealed class ItemListEvent {}
+class ItemListEvent {}
 
 class ItemListEventLoad extends ItemListEvent {}
 
